@@ -8,6 +8,6 @@ public class calculatePartition{
 	}
 
 	public static final BigInteger calculatePartition( ){
-		
+		return null;		
 	}
 }
