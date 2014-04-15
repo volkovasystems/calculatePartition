@@ -3,6 +3,10 @@ package calculatePartition;
 import java.math.BigInteger;
 import java.math.BigDecimal;
 
+/*
+	NOTE: Always compile with '-d .' 
+		And always run with <package-name>.<class-name> format
+*/
 public class calculatePartition{
 	private static final int DEFAULT_ROOT_FACTOR = 2;
 	
