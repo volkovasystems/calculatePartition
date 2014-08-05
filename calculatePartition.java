@@ -3,6 +3,8 @@ package calculatePartition;
 import java.math.BigInteger;
 import java.math.BigDecimal;
 
+import static nthRoot.nthRoot.nthRoot;
+
 /*
 	NOTE: Always compile with '-d .' 
 		And always run with <package-name>.<class-name> format
@@ -10,12 +12,16 @@ import java.math.BigDecimal;
 public class calculatePartition{
 	private static final int DEFAULT_ROOT_FACTOR = 2;
 	
-	public static void main( String... parameters ){
-		String spatialSize = parameters[ 0 ];
-		int rootFactor = DEFAULT_ROOT_FACTOR;
-		if( parameters.length == 2 ){
+	public static void main( String... parameterList ){
+
+		String spatialSize = parameterList[ 0 ];
+
+        int rootFactor = DEFAULT_ROOT_FACTOR;
+
+		if( parameterList.length == 2 ){
 			try{
-				rootFactor = Integer.parseInt( parameters[ 1 ] );
+				rootFactor = Integer.parseInt( parameterList[ 1 ] );
+
 			}catch( Exception exception ){
 				System.err.print( exception.getMessage( ) );
 				return;
