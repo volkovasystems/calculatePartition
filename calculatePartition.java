@@ -1,11 +1,11 @@
 package calculatePartition;
 
-import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.math.BigDecimal;
 
 import static nthRoot.nthRoot.nthRoot;
 
-/*
+/*                                                          ll
 	NOTE: Always compile with '-d .' 
 		And always run with <package-name>.<class-name> format
 */
@@ -28,22 +28,25 @@ public class calculatePartition{
 			}
 		}
 
-		BigDecimal partitionFactor = calculatePartition( spatialSize, rootFactor );
-		System.out.print( partitionFactor.toString( ) );
+        try{
+            BigDecimal partitionFactor = calculatePartition( spatialSize, rootFactor );
+
+            System.out.print( partitionFactor.toString( ) );
+
+        }catch( Exception exception ){
+            System.err.print( exception.getMessage( ) );
+        }
 	}
 
-	public static final BigDecimal calculatePartition( String spatialSize, int rootFactor ){
-		BigDecimal size = new BigDecimal( spatialSize );
-		
-		BigDecimal root = BigDecimal.ONE;
-		BigDecimal previousRoot = BigDecimal.ZERO;
-		do{
-			previousRoot = root;
-			root = root.subtract( root.pow( rootFactor ).subtract( size )
-				.divide( ( new BigDecimal( rootFactor ) ).multiply( root.pow( rootFactor - 1 ) ) ) );
-			System.out.println( root.toString( ) );
-		}while( root.compareTo( previousRoot ) == 0 );
+	public static final BigDecimal calculatePartition( String spatialSize, int rootFactor )
+        throws Exception
+    {
+        /*
+            Note that this will return the number of partitions not the number of elements per partition.
 
-		return root;		
+            Future implementation will require to return multi level partition size.
+        */
+
+        return nthRoot( spatialSize, "" + rootFactor, "4", 2 ).setScale( 0, RoundingMode.FLOOR );
 	}
 }
