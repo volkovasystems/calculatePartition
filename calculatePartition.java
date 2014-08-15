@@ -16,7 +16,7 @@ public class calculatePartition{
 
 		String spatialSize = parameterList[ 0 ];
 
-        int rootFactor = DEFAULT_ROOT_FACTOR;
+		int rootFactor = DEFAULT_ROOT_FACTOR;
 
 		if( parameterList.length == 2 ){
 			try{
@@ -28,25 +28,29 @@ public class calculatePartition{
 			}
 		}
 
-        try{
-            BigDecimal partitionFactor = calculatePartition( spatialSize, rootFactor );
+		try{
+			BigDecimal partitionFactor = calculatePartition( spatialSize, rootFactor );
 
-            System.out.print( partitionFactor.toString( ) );
+			System.out.print( partitionFactor.toString( ) );
 
-        }catch( Exception exception ){
-            System.err.print( exception.getMessage( ) );
-        }
+		}catch( Exception exception ){
+			System.err.print( exception.getMessage( ) );
+		}
 	}
 
 	public static final BigDecimal calculatePartition( String spatialSize, int rootFactor )
-        throws Exception
-    {
-        /*
-            Note that this will return the number of partitions not the number of elements per partition.
+		throws Exception
+	{
+		/*
+			Note that this will return the number of partitions not the number of elements per partition.
 
-            Future implementation will require to return multi level partition size.
-        */
+			Future implementation will require to return multi level partition size.
+		*/
+		
+		BigDecimal partitionFactor = nthRoot( spatialSize, "" + rootFactor, "4", 2 );
 
-        return nthRoot( spatialSize, "" + rootFactor, "4", 2 ).setScale( 0, RoundingMode.FLOOR );
+		BigDecimal partitionSize = ( new BigDecimal( spatialSize ) ).divide( partitionFactor );
+
+		return partitionSize.setScale( 0, RoundingMode.FLOOR );
 	}
 }
