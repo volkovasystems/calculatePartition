@@ -10,22 +10,16 @@ import static nthRoot.nthRoot.nthRoot;
 		And always run with <package-name>.<class-name> format
 */
 public class calculatePartition{
-	private static final int DEFAULT_ROOT_FACTOR = 2;
+	private static final String DEFAULT_ROOT_FACTOR = "2";
 	
 	public static void main( String... parameterList ){
 
 		String spatialSize = parameterList[ 0 ];
 
-		int rootFactor = DEFAULT_ROOT_FACTOR;
+		String rootFactor = DEFAULT_ROOT_FACTOR;
 
 		if( parameterList.length == 2 ){
-			try{
-				rootFactor = Integer.parseInt( parameterList[ 1 ] );
-
-			}catch( Exception exception ){
-				System.err.print( exception.getMessage( ) );
-				return;
-			}
+			rootFactor = parameterList[ 1 ];
 		}
 
 		try{
@@ -38,7 +32,7 @@ public class calculatePartition{
 		}
 	}
 
-	public static final BigDecimal calculatePartition( String spatialSize, int rootFactor )
+	public static final BigDecimal calculatePartition( String spatialSize, String rootFactor )
 		throws Exception
 	{
 		/*
@@ -47,7 +41,7 @@ public class calculatePartition{
 			Future implementation will require to return multi level partition size.
 		*/
 		
-		BigDecimal partitionFactor = nthRoot( spatialSize, "" + rootFactor, "4", 2 );
+		BigDecimal partitionFactor = nthRoot( spatialSize, rootFactor, "4", 2 );
 
 		BigDecimal partitionSize = ( new BigDecimal( spatialSize ) ).divide( partitionFactor );
 
