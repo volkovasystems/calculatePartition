@@ -43,8 +43,8 @@ public class calculatePartition{
 		
 		BigDecimal partitionFactor = nthRoot( spatialSize, rootFactor, "4", 2 );
 		
-		BigDecimal partitionSize = ( new BigDecimal( spatialSize ) ).divide( partitionFactor, 0, RoundingMode.FLOOR );
+		BigDecimal partitionCount = ( new BigDecimal( spatialSize ) ).divide( partitionFactor, 0, RoundingMode.FLOOR );
 
-		return partitionSize;
+		return partitionCount;
 	}
 }
